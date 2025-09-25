@@ -65,11 +65,13 @@ const galleryItems = [
 ];
 
 const galerryEl = document.querySelector('.js-gallery');
+const lightboxImageEl = document.querySelector('.lightbox__image');
+const lightboxEl = document.querySelector('.js-lightbox');
 
 const exerCreateItems = (array) => {
   galerryEl.innerHTML = array.map(({ preview, original, description }) => `
             <li class="gallery__item">
-              <a href="" class="gallery__link">
+              <a href="#" class="gallery__link">
                 <img 
                   src="${preview}"
                   alt="${description}"
@@ -80,4 +82,56 @@ const exerCreateItems = (array) => {
             `).join('');
 };
 
-exerCreateItems(galleryItems);
+
+galerryEl.addEventListener('click', (event) => {
+  event.preventDefault();
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+
+  lightboxImageEl.src = event.target.src = event.target.dataset.original;
+  lightboxEl.classList.toggle('is-open');
+});
+
+
+const closeLightBox = () => {
+  lightboxEl.classList.remove('is-open');
+  lightboxImageEl.src = '';
+}
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeLightBox();
+  }
+});
+
+lightboxEl.addEventListener('click', (event) => {
+  if (event.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  closeLightBox();
+});
+
+lightboxEl.addEventListener('click', (event) => {
+  if (event.target.classList.contains('lightbox__overlay')) {
+    closeLightBox();
+  }
+});
+
+
+// window.addEventListener('keydown', (event) => { 
+//   let currentIndex = -1;
+//   if (!lightboxEl.classList.contains('is-open')) return; // працює тільки коли відкрите
+
+//   if (event.key === 'ArrowRight') {
+//     currentIndex = (currentIndex + 1) % galleryItems.length;
+//     lightboxImageEl.src = galleryItems[currentIndex].original;
+//   }
+
+//   if (event.key === 'ArrowLeft') {
+//     currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+//     lightboxImageEl.src = galleryItems[currentIndex].original;
+//   }
+// });
+
+exerCreateItems(galleryItems); 

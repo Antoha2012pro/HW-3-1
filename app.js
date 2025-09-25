@@ -119,19 +119,4 @@ lightboxEl.addEventListener('click', (event) => {
 });
 
 
-// window.addEventListener('keydown', (event) => { 
-//   let currentIndex = -1;
-//   if (!lightboxEl.classList.contains('is-open')) return; // працює тільки коли відкрите
-
-//   if (event.key === 'ArrowRight') {
-//     currentIndex = (currentIndex + 1) % galleryItems.length;
-//     lightboxImageEl.src = galleryItems[currentIndex].original;
-//   }
-
-//   if (event.key === 'ArrowLeft') {
-//     currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-//     lightboxImageEl.src = galleryItems[currentIndex].original;
-//   }
-// });
-
 exerCreateItems(galleryItems); 

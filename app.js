@@ -68,7 +68,7 @@ const galerryEl = document.querySelector('.js-gallery');
 const lightboxImageEl = document.querySelector('.lightbox__image');
 const lightboxEl = document.querySelector('.js-lightbox');
 
-const exerCreateItems = (array) => {
+const createItems = (array) => {
   galerryEl.innerHTML = array.map(({ preview, original, description }) => `
             <li class="gallery__item">
               <a href="#" class="gallery__link">
@@ -119,4 +119,4 @@ lightboxEl.addEventListener('click', (event) => {
 });
 
 
-exerCreateItems(galleryItems); 
+createItems(galleryItems); 
